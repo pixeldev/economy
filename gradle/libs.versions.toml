@@ -1,0 +1,19 @@
+[versions]
+annotations = "23.0.0"
+spigot = "1.16.5-R0.1-SNAPSHOT"
+
+guice = "4.2.3"
+
+# unnamed dependencies
+nmessage = "6.0.17"
+inject = "1.0.0"
+
+[libraries]
+annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+spigot = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
+
+inject-guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
+
+# unnamed dependencies
+nmessage = { group = "me.yushust.message", name = "core", version.ref = "nmessage" }
+inject-trew = { group = "team.unnamed", name = "inject", version.ref = "inject"}

@@ -8,5 +8,5 @@ repositories {
 
 dependencies {
     api(project(":api"))
-    api("me.yushust.inject:core:0.4.5-SNAPSHOT")
+    api(libs.inject.trew)
 }

@@ -1,0 +1,22 @@
+name: 'build'
+on: [ 'pull_request', 'push' ]
+jobs:
+    build:
+        if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+        runs-on: 'ubuntu-latest'
+        steps:
+            -   name: 'checkout repo'
+                uses: 'actions/checkout@v2'
+            -   name: 'setup JDK'
+                uses: 'actions/setup-java@v1'
+                with:
+                    java-version: 8
+            -   name: 'build'
+                run: './gradlew build -PCosmoLibsUsername=${{ secrets.COSMO_LIBS_USERNAME }} -PCosmoLibsPassword=${{ secrets.COSMO_LIBS_PASSWORD }}'
+# DON'T FORGET TO UNCOMMENT THIS BLOCK WHEN YOU'RE READY TO DEPLOY
+            -   name: 'publish'
+                if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+                run: './gradlew publish -PCosmoLibsUsername=${{ secrets.COSMO_LIBS_USERNAME }} -PCosmoLibsPassword=${{ secrets.COSMO_LIBS_PASSWORD }}'
+                env:
+                    PUBLIC_REPO_USER: '${{ secrets.PUBLIC_REPO_USER }}'
+                    PUBLIC_REPO_PASSWORD: '${{ secrets.PUBLIC_REPO_PASSWORD }}'

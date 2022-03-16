@@ -1,11 +1,10 @@
 package net.cosmogrp.economy.trew;
 
-import me.yushust.inject.AbstractModule;
-import me.yushust.inject.key.TypeReference;
-import me.yushust.inject.scope.Scopes;
 import net.cosmogrp.economy.EconomyHandler;
 import net.cosmogrp.economy.context.TransactionContext;
 import net.cosmogrp.economy.transaction.executor.TransactionExecutor;
+import team.unnamed.inject.AbstractModule;
+import team.unnamed.inject.key.TypeReference;
 
 public class EconomyModule extends AbstractModule {
 
@@ -16,12 +15,12 @@ public class EconomyModule extends AbstractModule {
         bind(EconomyHandler.class)
                 .named(name)
                 .to(handler)
-                .in(Scopes.SINGLETON);
+                .singleton();
 
         bind(new TypeReference<TransactionExecutor<TransactionContext>>() {})
                 .named(name)
                 .to(new TypeReference<InjectedTransactionExecutor<TransactionContext>>() {})
-                .in(Scopes.SINGLETON);
+                .singleton();
     }
 
 }

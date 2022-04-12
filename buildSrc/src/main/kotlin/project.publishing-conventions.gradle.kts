@@ -16,11 +16,11 @@ publishing {
             }
 
             credentials {
-                val userKey = "PUBLIC_REPO_USER"
-                val pwdKey = "PUBLIC_REPO_PASSWORD"
-                username = project.properties["COSMOGRP_$userKey"] as String?
+                val userKey = "COSMO_CI_USER"
+                val pwdKey = "COSMO_CI_PASSWORD"
+                username = project.properties[userKey] as String?
                     ?: System.getenv(userKey)
-                password = project.properties["COSMOGRP_$pwdKey"] as String?
+                password = project.properties[pwdKey] as String?
                     ?: System.getenv(pwdKey)
             }
         }
